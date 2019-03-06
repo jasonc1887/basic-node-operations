@@ -16,6 +16,12 @@ function evaluateCmd(userInput) {
     case "cat":
       commandLibrary.cat(userInputArray.slice(1));
       break;
+    case "head":
+        commandLibrary.head(userInputArray.slice(1));
+    case "tail":
+        commandLibrary.tail(userInputArray.slice(1));
+    default:
+        process.stdout.write("This is not a valid command");
   }
 }
 
@@ -30,7 +36,29 @@ const commandLibrary = {
            if (err) throw err;
            done(data);
        });
-   }
+   },
+
+   "head": function(fullPath) {
+        const fileName = fullPath[0];
+        fs.readFile(fileName, (err, data) => {
+            if (err) throw err;
+            const text = data.toString("utf8");
+            const slicedText = text.split("\n").slice(0,10).join("\n");
+            const bufferText = Buffer.from(slicedText, "utf8");
+            done(bufferText);
+        });
+   },
+
+   "tail": function(fullPath) {
+        const fileName = fullPath[0];
+        fs.readFile(fileName, (err, data) => {
+            if (err) throw err;
+            const text = data.toString("utf8");
+            const slicedText = text.split("\n").slice(-10).join("\n");
+            const bufferText = Buffer.from(slicedText, "utf8");
+            done(bufferText);
+        });
+   },
 };
 
 module.exports.commandLibrary = commandLibrary;

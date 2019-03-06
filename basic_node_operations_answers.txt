@@ -1,0 +1,120 @@
+Basic Node Operations 
+Node.js - checkpoint 6
+
+1. Run the commands sort, wc and uniq on the commands.js file. Explain how they work and what the output was.
+
+A: 
+
+'sort' - returns contents of file sorted alphabetically by line: 
+
+           done(data);
+           if (err) throw err;
+       const fileName = fullPath[0];
+       fs.readFile(fileName, (err, data) => {
+       });
+      break;
+      break;
+      commandLibrary.cat(userInputArray.slice(1));
+      commandLibrary.echo(userInputArray.slice(1).join(""));
+    case "cat":
+    case "echo":
+    done(userInput);
+   }
+  "cat": function(fullPath) {
+  "echo": function(userInput) {
+  const command = userInputArray[0];
+  const userInputArray = userInput.split(" ");
+  process.stdout.write('\nprompt > ');
+  process.stdout.write(output);
+  switch (command) {
+  }
+  },
+const commandLibrary = {
+const fs = require("fs");
+function done(output) {
+function evaluateCmd(userInput) {
+module.exports.commandLibrary = commandLibrary;
+module.exports.evaluateCmd = evaluateCmd;
+}
+}
+};
+
+'wc' - prints details of the file including number of lines, words and bytes: 
+
+37      72     804 commands.js
+
+'uniq' - returns only original lines of a file and will not return duplicate lines: 
+
+const fs = require("fs");
+
+function done(output) {
+  process.stdout.write(output);
+  process.stdout.write('\nprompt > ');
+}
+
+function evaluateCmd(userInput) {
+  const userInputArray = userInput.split(" ");
+  const command = userInputArray[0];
+
+  switch (command) {
+    case "echo":
+      commandLibrary.echo(userInputArray.slice(1).join(""));
+      break;
+    case "cat":
+      commandLibrary.cat(userInputArray.slice(1));
+      break;
+  }
+}
+
+const commandLibrary = {
+  "echo": function(userInput) {
+    done(userInput);
+  },
+
+  "cat": function(fullPath) {
+       const fileName = fullPath[0];
+       fs.readFile(fileName, (err, data) => {
+           if (err) throw err;
+           done(data);
+       });
+   }
+};
+
+module.exports.commandLibrary = commandLibrary;
+module.exports.evaluateCmd = evaluateCmd;
+
+2. Using the pipe (|) connect at least two commands and run it on commands.js. Explain what the output was and why the specific data was outputted.
+
+A: Jason$ cat commands.js | wc
+output:       37      72     804
+
+This command applies the 'wc' command to commands.js file using 'cat' to output the contents of the file. 
+
+6. programming challenge:
+
+function reverseString(inputString) {
+  let splitArray = inputString.split(' ');
+  for (i = 0; i < splitArray.length; i++) {
+    let words = splitArray[i];
+    let letters = words.split('');
+    let reverseLetters = letters.reverse();
+    let reverseWord = reverseLetters.join('');
+    let reversed = [];
+    reversed.push(reverseWord);
+    let reversedPhrase = reversed.join('');
+    console.log(reversedPhrase);
+  }
+}
+
+console.log(reverseString('i like bloc'));
+
+
+
+
+
+
+
+
+
+
+
